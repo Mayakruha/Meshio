@@ -125,7 +125,10 @@ class Mesh:
         cell_sets: dict[str, list[ArrayLike]] | None = None,
         gmsh_periodic=None,
         info=None,
+        **kwargs,
     ):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
         self.points = np.asarray(points)
         if isinstance(cells, dict):
             # Let's not deprecate this for now.
